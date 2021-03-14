@@ -5,9 +5,7 @@ time = Time.now.to_i
   action :run
 end
 
-node[:deploy].each do |application, deploy|
-  if application == node[:image][:app_name]
-    if deploy[:scm]
+
       s3_bucket, s3_key, base_url = OpsWorks::SCM::S3.parse_uri(deploy[:scm][:repository])
       s3_file "/usr/share/nginx/html" do
         bucket s3_bucket
@@ -20,6 +18,3 @@ node[:deploy].each do |application, deploy|
         s3_url base_url
         action :create
       end
-    end
-  end
-end
