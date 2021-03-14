@@ -6,12 +6,9 @@ time = Time.now.to_i
 end
 
 
-      s3_file "/usr/share/nginx/html" do
-        bucket s3_bucket
-        remote_path node["deploy"]["appshortname"]["scm"]["repository"]
-        owner "root"
-        group "root"
-        mode "0755"
-        s3_url base_url
-        action :create
-      end
+execute "dowload  artifact" do
+time = Time.now.to_i
+  cwd '/usr/share/nginx/html'
+  command "aws s3 cp s3://demo-km/demo.zip . && unzip demo.zip"
+  action :run
+end
