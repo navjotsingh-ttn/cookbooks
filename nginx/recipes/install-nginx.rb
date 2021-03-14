@@ -5,7 +5,7 @@ time = Time.now.to_i
   action :run
 end
 
-execute "install nginx via yum" do
-   command "yum -y install nginx"
+execute "install nginx" do
+   command "sudo amazon-linux-extras install nginx1"
    action :run
 end
