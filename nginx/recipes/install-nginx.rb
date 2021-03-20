@@ -6,6 +6,6 @@ time = Time.now.to_i
 end
 
 execute "install nginx" do
-   command "sudo amazon-linux-extras install nginx1"
+   command "sudo amazon-linux-extras install nginx1 && sudo service nginx start"
    action :run
 end
